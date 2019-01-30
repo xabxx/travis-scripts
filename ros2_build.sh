@@ -17,7 +17,7 @@ do
   docker exec ${ros2_distro_names_arr[$i]}-container /bin/bash -c 'source /opt/ros/$ROS_DISTRO/setup.bash && cd /"$ROS_DISTRO"_ws/ && rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -r -y'
   docker exec ${ros2_distro_names_arr[$i]}-container /bin/bash -c 'source /opt/ros/$ROS_DISTRO/setup.bash && cd /"$ROS_DISTRO"_ws/ && colcon build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-fprofile-arcs -ftest-coverage" -DCMAKE_C_FLAGS="-fprofile-arcs -ftest-coverage"'
   if [[ -z "${PACKAGE_NAME}" ]]; then
-    docker exec ${ros2_distro_names_arr[$i]}-container /bin/bash -c 'source /opt/ros/$ROS_DISTRO/setup.bash && cd /"$ROS_DISTRO"_ws/ && colcon build --packages-select $PACKAGE_NAME --cmake-target tests
+    docker exec ${ros2_distro_names_arr[$i]}-container /bin/bash -c 'source /opt/ros/$ROS_DISTRO/setup.bash && cd /"$ROS_DISTRO"_ws/ && colcon build --packages-select $PACKAGE_NAME --cmake-target tests'
   fi
   docker exec ${ros2_distro_names_arr[$i]}-container /bin/bash -c 'source /opt/ros/$ROS_DISTRO/setup.bash && cd /"$ROS_DISTRO"_ws/ && source ./install/setup.bash && colcon test'
   docker exec ${ros2_distro_names_arr[$i]}-container /bin/bash -c 'source /opt/ros/$ROS_DISTRO/setup.bash && cd /"$ROS_DISTRO"_ws/ && source ./install/setup.bash && colcon test-result --all'
