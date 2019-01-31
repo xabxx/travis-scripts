@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt update && apt install -y python3 python3-pip libgtest-dev cmake && rosdep update
-cd /usr/src/gtest && cmake CMakeLists.txt && make && cp *.a /usr/lib'
+cd /usr/src/gtest && cmake CMakeLists.txt && make && cp *.a /usr/lib
 apt update && apt install -y python3-colcon-common-extensions && pip3 install -U setuptools
 . /opt/ros/$ROS_DISTRO/setup.sh
 cd /"$ROS_DISTRO"_ws/
