@@ -17,3 +17,8 @@ fi
 . ./install/setup.sh
 colcon test
 colcon test-result --all
+lcov --capture --directory . --output-file coverage.info
+lcov --remove coverage.info '/usr/*' --output-file coverage.info
+lcov --list coverage.info
+cd /"$ROS_DISTRO"_ws/
+mv coverage.info /shared
