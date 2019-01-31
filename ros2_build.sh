@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 apt update && apt install -y python3 python3-pip libgtest-dev cmake && rosdep update
 cd /usr/src/gtest && cmake CMakeLists.txt && make && cp *.a /usr/lib
