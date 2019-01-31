@@ -10,7 +10,8 @@ apt update && apt install -y python3-colcon-common-extensions && pip3 install -U
 cd /"$ROS_DISTRO"_ws/
 rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -r -y
 colcon build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS='-fprofile-arcs -ftest-coverage' -DCMAKE_C_FLAGS='-fprofile-arcs -ftest-coverage'
-if [ ! -z "${PACKAGE_NAME}" ];
+if [ ! -z "${PACKAGE_NAME}"
+     && "$ROS_VERSION" == "1" ];
 then
   colcon build --packages-select $PACKAGE_NAME --cmake-target tests
 fi
