@@ -2,7 +2,9 @@
 set -e
 
 apt update && apt install -y python3-pip python3-apt dpkg ros-$ROS_DISTRO-ros-base && rosdep update
-apt update && apt install -y python3-colcon-common-extensions && pip3 install -U setuptools && pip3 install --upgrade pip
+apt update && apt install -y python3-colcon-common-extensions && pip3 install -U setuptools
+pip3 install --upgrade pip
+pip3 install colcon-bundle colcon-ros-bundle
 . /opt/ros/$ROS_DISTRO/setup.sh
 cd /"$ROS_DISTRO"_ws/"$SA_NAME"/robot_ws/
 rosws update
